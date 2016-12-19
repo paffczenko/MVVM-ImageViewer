@@ -1,0 +1,26 @@
+﻿<Window x:Class="MVVM.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:local="clr-namespace:MVVM"
+        Title="MainWindow" Height="467" Width="762"
+        SizeToContent="WidthAndHeight" WindowStyle="ToolWindow"  >
+    <Window.DataContext>
+        <local:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,15,20,1" Height="421">
+        <Image x:Name="image" HorizontalAlignment="Left" Height="372" Margin="12,5,0,0" VerticalAlignment="Top" Width="520" Source="{Binding MyImage}">
+            <Image.OpacityMask>
+                <SolidColorBrush Color="{DynamicResource {x:Static SystemColors.DesktopColorKey}}"/>
+            </Image.OpacityMask>
+        </Image>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="342" Margin="550,41,0,0" VerticalAlignment="Top" Width="164" SelectedItem="{Binding MySelectedItem}" ItemsSource="{Binding ListOfItems}" SelectedIndex="{Binding MySelectedIndex}"/>
+        <Button x:Name="previousButton" IsEnabled="{Binding PreviousButtonEnabled}" Content="&lt;" HorizontalAlignment="Left" Margin="12,391,0,0" VerticalAlignment="Top" Command="{Binding PreviousButtonPressed}" Width="75"/>
+        <Button x:Name="nextButton" Content=">" IsEnabled="{Binding NextButtonEnabled}" HorizontalAlignment="Left" Margin="456,391,0,0" VerticalAlignment="Top" Command="{Binding NextButtonPressed}" Width="76"/>
+        <Button x:Name="startButton" Visibility="{Binding StartButtonVisible}" Content="{Binding StartButton}" IsEnabled="{Binding StartButtonEnabled}" HorizontalAlignment="Left" Margin="237,391,0,0" VerticalAlignment="Top" Command="{Binding StartButtonPressed}" Width="74"/>
+        <Button x:Name="browseButton" Content="Browse" HorizontalAlignment="Left" Margin="638,16,0,0" VerticalAlignment="Top" Width="76" Command="{Binding DirectoryBrowse}" />
+        <ProgressBar HorizontalAlignment="Left" Height="20" Margin="550,16,0,0" VerticalAlignment="Top" Width="74" Visibility="{Binding ProgressBarVisibility}" Value="{Binding ProgressBarValue}"/>
+
+    </Grid>
+</Window>
